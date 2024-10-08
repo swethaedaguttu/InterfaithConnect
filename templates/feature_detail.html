@@ -1,0 +1,7 @@
+{% extends 'events\home.html' %}
+
+{% block content %}
+<h1>{{ feature.name }}</h1>
+<p>{{ feature.description }}</p>
+<a href="{% url 'feature_list' %}">Back to Features</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'events\home.html' %}
+
+{% block content %}
+<h1>Features</h1>
+<ul>
+    {% for feature in features %}
+        <li>
+            <a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

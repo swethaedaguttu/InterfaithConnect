@@ -1,0 +1,283 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Community Connect{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* General body styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef; /* Light gray-blue background */
+            color: #333; /* Dark gray text color */
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #343a40; /* Dark background for the navbar */
+        }
+
+        .navbar-brand {
+            color: #ffffff !important; /* White brand color */
+            font-weight: bold;
+            font-size: 1.8rem; /* Larger font size */
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #ffcc00 !important; /* Golden color on hover */
+        }
+
+        .nav-link {
+            color: #d80e0e !important; /* White color for nav links */
+            font-weight: 500; /* Medium weight for better visibility */
+            transition: color 0.3s ease; /* Smooth color transition on hover */
+        }
+
+        .nav-link:hover {
+            color: #ffcc00 !important; /* Golden color on hover */
+            text-decoration: underline; /* Underline effect on hover */
+        }
+
+        /* Main container styles */
+        .container {
+            max-width: 1200px; /* Set a maximum width for the content */
+            margin: auto; /* Center the content */
+            padding: 20px; /* Add padding to the container */
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            background-color: #f8f9fa; /* Light background for the sidebar */
+            border-right: 1px solid #dee2e6; /* Border for separation */
+            padding: 20px; /* Padding for the sidebar */
+            position: sticky; /* Keep sidebar sticky */
+            top: 0; /* Stay at the top of the viewport */
+            height: 100%; /* Full height */
+        }
+
+        /* Community Connect heading styles */
+        h1 {
+            text-align: center; /* Center the heading */
+            font-size: 3.5rem; /* Larger font size for the heading */
+            color: #007bff; /* Blue color for the heading */
+            margin-bottom: 20px; /* Space below the heading */
+            animation: fadeIn 1s ease; /* Fade-in animation */
+        }
+
+        /* List styles */
+        ul {
+            list-style-type: none; /* Remove bullet points */
+            padding-left: 0; /* Remove padding */
+        }
+
+        ul li {
+            background-color: #ffffff; /* White background for list items */
+            margin: 15px 0; /* Space between list items */
+            padding: 20px; /* Padding inside list items */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effect */
+        }
+
+        /* Hover effect for list items */
+        ul li:hover {
+            background-color: #f1f1f1; /* Change background on hover */
+            transform: translateY(-5px); /* Slight upward movement on hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #343a40; /* Same color as the navbar */
+            color: #ffffff; /* White text color */
+            padding: 20px 0; /* Vertical padding */
+        }
+
+        footer p {
+            margin: 0; /* Remove default margin */
+            text-align: center; /* Center footer text */
+        }
+
+        /* Animation for the heading */
+        @keyframes fadeIn {
+            from {
+                opacity: 0; /* Start transparent */
+            }
+            to {
+                opacity: 1; /* End fully visible */
+            }
+        }
+
+        /* Button styles */
+        .btn-custom {
+            background-color: #007bff; /* Custom button color */
+            color: #ffffff; /* White text */
+            border: none; /* Remove border */
+            padding: 10px 20px; /* Padding */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Transition for hover effect */
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-3px); /* Slight upward movement on hover */
+        }
+
+        /* Search bar styles */
+        .search-container {
+            text-align: center;
+            margin: 20px 0; /* Space above and below */
+        }
+
+        .search-input {
+            width: 300px; /* Fixed width for the input */
+            padding: 10px; /* Padding */
+            border: 1px solid #ced4da; /* Light gray border */
+            border-radius: 5px; /* Rounded corners */
+            transition: border 0.3s ease; /* Smooth border transition */
+        }
+
+        .search-input:focus {
+            border-color: #007bff; /* Change border color on focus */
+            outline: none; /* Remove outline */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none; /* Hide sidebar on smaller screens */
+            }
+
+            .container {
+                padding: 10px; /* Reduce padding on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">InterfaithConnect</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'community_list' %}">Communities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'event_list' %}">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'community_create' %}">Create Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'event_create' %}">Create Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4 d-flex flex-row">
+        <!-- Sidebar -->
+        <div class="sidebar d-none d-md-block col-md-3">
+            <h4>Quick Links</h4>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="{% url 'community_list' %}">View All Communities</a></li>
+                <li class="list-group-item"><a href="{% url 'event_list' %}">View All Events</a></li>
+                <li class="list-group-item"><a href="{% url 'interfaith_networking' %}">Interfaith Networking</a></li>
+                <li class="list-group-item"><a href="{% url 'about_us' %}">About Us</a></li>
+                <li class="list-group-item"><a href="{% url 'contact' %}">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content col-md-9">
+            <h1>Welcome to InterfaithConnect</h1>
+            
+            <!-- Search bar -->
+            <div class="search-container">
+                <form action="{% url 'index' %}" method="GET">
+                    <input type="text" class="search-input" name="search" placeholder="Search for communities or events..." value="{{ request.GET.search }}" />
+                    <button type="submit" class="btn btn-custom">Search</button>
+                </form>
+            </div>
+
+            <!-- Featured Community Section -->
+            <section>
+                <h2>Featured Community</h2>
+                <p>Join our highlighted community for exclusive events and discussions!</p>
+            </section>
+
+            <!-- Join the Conversation Button -->
+            <div class="text-center mt-4">
+                <a href="{% url 'interfaith_networking' %}" class="btn btn-custom">Join the Conversation</a>
+            </div>
+
+            <!-- Upcoming Events Section -->
+            <section class="mt-4">
+                <h2>Upcoming Events</h2>
+                {% if upcoming_events %}
+                    <ul class="list-group">
+                        {% for event in upcoming_events %}
+                            <li class="list-group-item">
+                                <strong>{{ event.title }}</strong> - {{ event.date|date:"F j, Y, g:i a" }}
+                                <p>{{ event.description }}</p>
+                                <a href="{% url 'event_detail' event.id %}" class="btn btn-primary">View Details</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No upcoming events at the moment.</p>
+                {% endif %}
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="mt-4">
+                <h2>What Our Members Say</h2>
+                <blockquote class="blockquote">
+                    <p class="mb-0">"InterfaithConnect has transformed the way I engage with my neighborhood!"</p>
+                    <footer class="blockquote-footer">John Doe, Community Member</footer>
+                </blockquote>
+                <blockquote class="blockquote">
+                    <p class="mb-0">"I love attending the events organized here. Great way to meet new people!"</p>
+                    <footer class="blockquote-footer">Jane Smith, Event Attendee</footer>
+                </blockquote>
+            </section>
+
+            <!-- News and Updates Section -->
+            <section class="mt-4">
+                <h2>Latest News and Updates</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">New community guidelines have been published. <a href="C:\community_connect\community_connect\templates\feature_detail.html">Read more</a></li>
+                    <li class="list-group-item">Join us for a special event next week! <a href="C:\community_connect\community_connect\templates\feature_list.html">Details here</a></li>
+                    <li class="list-group-item">We're launching a new feature in our app. Stay tuned!</li>
+                </ul>
+            </section>
+
+            <!-- Other content goes here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 InterfaithConnect. All rights reserved.</p>
+    </footer>
+</body>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
